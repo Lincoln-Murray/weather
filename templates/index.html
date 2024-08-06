@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Weather app</title>
+    <link rel="stylesheet" href=" {{url_for('static', filename='style.css')}} ">
+    <link rel="icon" type="image/png" href="{{ json['current']['condition']['icon'] }}" />
+    <script src=" {{url_for('static', filename='location.js')}} "></script>
+    <script src=" {{url_for('static', filename='main.js')}} "></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+</head>
+<class="header" id="header">
+    <span class="centre", style="width: 100%; font-size: 6vh; top: 3vh; text-align: left; color: var(--background_color);">
+        {{ json['location']['name'] }}
+    </span>
+    <span class="centre", style="width: 100%; font-size: 3vh; top: 7vh; text-align: left; color: var(--background_color);">
+        {{ json['location']['region'] }}({{ json['location']['country'] }})
+    </span>
+    
+</header>
+<body>
+    <span class= "centre">
+        <img src="https://static.vecteezy.com/system/resources/previews/016/770/600/non_2x/red-directional-arrow-on-transparent-background-free-png.png" height="16px" width="16px">
+        <p class="centre"> {{ json['current']['wind_kph'] }}</p>
+    </span>
+</body>
+</html>
