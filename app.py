@@ -27,5 +27,3 @@ def positions():
     location_response = request.get_json()
     location = str(location_response['latitude']) + ', ' + str(location_response['longitude'])
     return index()
-
-app.run(host='0.0.0.0', port=10000)
