@@ -28,4 +28,4 @@ def positions():
     location = str(location_response['latitude']) + ', ' + str(location_response['longitude'])
     return index()
 
-app.run()
+app.run(debug=True, host='0.0.0.0', port=10000)
