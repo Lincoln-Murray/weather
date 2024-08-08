@@ -18,6 +18,10 @@ var timer = setInterval(function() {
         console.log(document.getElementById('wind_dir').alt)
         console.log(document.getElementById('wind_dir').style)
         document.getElementById('wind_dir').style.transform = 'rotate(' + String(directions.indexOf(document.getElementById('wind_dir').alt)*22.5-90) + 'deg)'
+        arrows = document.getElementsByClassName('wind_dir')
+        for (var i = 0, length = arrows.length; i < length; i++) {
+            arrows[i].style.transform = 'rotate(' + String(directions.indexOf(arrows[i].alt)*22.5-90) + 'deg)'
+        }
         clearInterval(timer)
         timer = null
     }
