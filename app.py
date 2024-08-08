@@ -13,10 +13,9 @@ def index():
     response = r.get(url)
 
     if str(response) == '<Response [200]>':
-        weather_json = open('weather.json', 'w')
-        weather_json.write(str(response.json()).replace("'", '"'))
-        weather_json.close()
         return render_template('index.html', json = response.json())
+    elif location == '':
+        return render_template('loading_location.html')
     else:
         return render_template('error.html', json = response.json())
 
