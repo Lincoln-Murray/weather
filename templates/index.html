@@ -31,8 +31,29 @@
     </span>
 </header>
 <body>
-    <span class= "centre">
-        <table style="margin-left: 20px;"> 
+    <table style="top:9%; position: absolute;">
+        <tr>
+            <td>Daily overview:</td>
+        </tr>
+        {%for value in json['forecast']['forecastday'][0]['day']%} 
+            {% if value[-1] == 'f' or value[-4:] == 'snow' or value in ['totalsnow_cm', 'maxwind_mph', 'avgvis_miles', 'totalprecip_in', 'daily_will_it_rain']: %}
+            {% else %}
+                {% if value == 'condition': %}
+                    <tr>
+                        <td>{{ value }}</td>
+                        <td><img src="{{ json['forecast']['forecastday'][0]['day'][value]['icon'] }}" alt="{{ json['forecast']['forecastday'][0]['day'][value]['text'] }}" style="height: 1em; width: 1em;"></td>
+                    </tr>
+                {% else %}
+                    <tr>
+                        <td>{{ {"maxtemp_c":"Maximum Temp(C)", "mintemp_c":"Minimum Temp(C)", "avgtemp_c":"Average Temp(C)", "maxwind_kph":"Max Wind(KPH)", "totalprecip_mm":"Precipitation(mm)", "avgvis_km":"Visibility(KM)", "avghumidity":"Humidity(%)", "daily_chance_of_rain":"Chance of rain(%)", "condition":"Weather Condition", "uv":"UV Index"}[value] }}</td>
+                        <td>{{ json['forecast']['forecastday'][0]['day'][value] }}</td>
+                    </tr>
+                {% endif %}
+            {% endif %}
+        {%endfor%}
+    </table>
+    <span class= "centre" style="top: 90%;">
+        <table> 
             <tr> 
                 <td>Hour:</td>
                 {%for hour in json['forecast']['forecastday'][0]['hour']%} 
