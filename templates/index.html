@@ -19,19 +19,19 @@
     </span>
     
     <span class="centre", style="width: 100%; font-size: 5vh; top: 2.5vh; text-align: right; color: var(--background_color);">
-        <img style="float: right;" src="{{ json['current']['condition']['icon'] }}" alt="{{ json['current']['condition']['text'] }}">
+        <img style="float: right; margin-top: 3px;" src="{{ json['current']['condition']['icon'] }}" alt="{{ json['current']['condition']['text'] }}">
         {{ json['current']['temp_c'] }} °C
     </span>
     <span id="feelslike_c" class="centre", style="width: 100%; font-size: 2vh; top: 6vh; text-align: right; right: 64px; color: var(--background_color);">
         Feels Like: {{ json['current']['feelslike_c'] }} °C <br>
         <img id="wind_dir" src="https://static.vecteezy.com/system/resources/previews/016/770/600/non_2x/red-directional-arrow-on-transparent-background-free-png.png" alt="{{ json['current']['wind_dir'] }}" style="top: 1px;" height="16px" width="16px">
         {{ json['current']['wind_kph'] }} KPH 
+        <img id="uv_index" src=" {{url_for('static', filename='uv-index.512x512.png')}} " alt="{{ json['current']['uv'] }}" style="top: 1px;" height="16px" width="16px">
+        {{ json['current']['uv'] }} 
     </span>
 </header>
 <body>
     <span class= "centre">
-        <img src="https://static.vecteezy.com/system/resources/previews/016/770/600/non_2x/red-directional-arrow-on-transparent-background-free-png.png" height="16px" width="16px">
-        <p class="centre"> {{ json['current']['wind_kph'] }}</p>
     </span>
 </body>
 </html>
