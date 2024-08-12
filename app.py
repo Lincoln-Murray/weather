@@ -8,7 +8,7 @@ location = ''
 @app.route("/")
 def index():
     key = 'ad261dda6b984968bd560251243107'
-    url = 'http://api.weatherapi.com/v1/forecast.json?key=' + key + '&q=' + location + '&aqi=yes'
+    url = 'http://api.weatherapi.com/v1/forecast.json?key=' + key + '&q=' + location + '&days=3&aqi=yes&alerts=yes'
 
     response = r.get(url)
 
