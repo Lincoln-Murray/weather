@@ -16,6 +16,13 @@
     </span>
     <span class="centre", style="width: 100%; font-size: 3vh; top: 7vh; text-align: left; color: var(--background_color);">
         {{ json['location']['region'] }}({{ json['location']['country'] }})
+    </span> 
+    <span class="centre", style="width: 100%; font-size: 9vh; color: var(--background_color);">
+        {% if json['alerts']['alert'] != {} %}
+            {{ json['alerts']['alert']['headline'] }}
+        {% else %}
+            Weather
+        {% endif %}
     </span>
     
     <span class="centre", style="width: 100%; font-size: 5vh; top: 2.5vh; text-align: right; color: var(--background_color);">
@@ -82,5 +89,68 @@
             </tr>
         </table>
     </span>
+    <table style="top:10%; left: 40%; position: absolute;">
+        <tr>
+            <td>Forecast</td>
+        </tr>
+        <tr>
+            <td>Date:</td>
+            {% for day in json['forecast']['forecastday']: %}
+                <td class="forecast_hover" style="position: relative;">
+                    {{ day['date'][-2:] }}/{{ day['date'][-5:-3] }}
+                    <span class="forecast_details">
+                        <table>
+                            <tr> 
+                                <td>Hour:</td>
+                                {%for hour in day['hour']%} 
+                                    <td>{{ ['12AM', '1AM', '2AM', '3AM', '4AM', '5AM', '6AM', '7AM', '8AM', '9AM', '10AM', '11AM', '12PM', '1PM', '2PM', '3PM', '4PM', '5PM', '6PM', '7PM', '8PM', '9PM', '10PM', '11PM'][day['hour'].index(hour)] }}</td>
+                                {%endfor%}
+                            </tr>
+                            <tr> 
+                                <td>Temp:</td>
+                                {%for value in day['hour']%} 
+                                    <td>{{ value['temp_c'] }}</td>
+                                {%endfor%}
+                            </tr>
+                            <tr> 
+                                <td>Wind Speed:</td>
+                                {%for value in day['hour']%} 
+                                    <td>{{ value['wind_kph'] }}</td>
+                                {%endfor%}
+                            </tr>
+                            <tr> 
+                                <td></td>
+                                {%for value in day['hour']%} 
+                                    <td>
+                                        <img class="wind_dir" src="https://static.vecteezy.com/system/resources/previews/016/770/600/non_2x/red-directional-arrow-on-transparent-background-free-png.png" alt="{{ value['wind_dir'] }}" style="top: 1px;" height="16px" width="16px">
+                                    </td>
+                                {%endfor%}
+                            </tr>
+                        </table>
+                    </span>
+                </td>
+            {% endfor %}
+        </tr>
+        {%for value in json['forecast']['forecastday'][0]['day']%} 
+            {% if value[-1] == 'f' or value[-4:] == 'snow' or value in ['totalsnow_cm', 'maxwind_mph', 'avgvis_miles', 'totalprecip_in', 'daily_will_it_rain']: %}
+            {% else %}
+                {% if value == 'condition': %}
+                    <tr>
+                        <td>{{ value }}</td>
+                        {% for day in json['forecast']['forecastday']: %}
+                            <td><img src="{{ day['day'][value]['icon'] }}" alt="{{ day['day'][value]['text'] }}" style="height: 1em; width: 1em;"></td>
+                        {% endfor %}
+                    </tr>
+                {% else %}
+                    <tr>
+                        <td>{{ {"maxtemp_c":"Maximum Temp(C)", "mintemp_c":"Minimum Temp(C)", "avgtemp_c":"Average Temp(C)", "maxwind_kph":"Max Wind(KPH)", "totalprecip_mm":"Precipitation(mm)", "avgvis_km":"Visibility(KM)", "avghumidity":"Humidity(%)", "daily_chance_of_rain":"Chance of rain(%)", "condition":"Weather Condition", "uv":"UV Index"}[value] }}</td>
+                        {% for day in json['forecast']['forecastday']: %}
+                            <td>{{ day['day'][value] }}</td>
+                        {% endfor %}
+                    </tr>
+                {% endif %}
+            {% endif %}
+        {%endfor%}
+    </table>
 </body>
 </html>
