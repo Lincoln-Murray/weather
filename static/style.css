@@ -27,7 +27,7 @@
     position: absolute;
     top: 0;
     transform: translateX(-50%) translateY(1em) scale(0);
-    background: wheat;
+    background: white;
     z-index: 5;
     min-width: 50%;
     padding: 1rem;
