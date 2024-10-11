@@ -13,11 +13,17 @@ def index():
     response = r.get(url)
 
     if str(response) == '<Response [200]>':
-        return render_template('index.html', json = response.json())
+        if 'iphone' in request.headers.get('User-Agent').lower() or 'android' in request.headers.get('User-Agent').lower():
+            return render_template('index.html', json = response.json())
+        else:
+            return render_template('index.html', json = response.json())
     elif location == '':
         return render_template('loading_location.html')
     else:
-        return render_template('error.html', json = response.json())
+        if 'iphone' in request.headers.get('User-Agent').lower() or 'android' in request.headers.get('User-Agent').lower():
+            return render_template('error_m.html', json = response.json())
+        else:
+            return render_template('error.html', json = response.json())
 
 
 @app.route("/positions", methods=['POST'])
