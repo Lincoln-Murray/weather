@@ -14,7 +14,7 @@ def index():
 
     if str(response) == '<Response [200]>':
         if 'iphone' in request.headers.get('User-Agent').lower() or 'android' in request.headers.get('User-Agent').lower():
-            return render_template('index.html', json = response.json())
+            return render_template('index_m.html', json = response.json())
         else:
             return render_template('index.html', json = response.json())
     elif location == '':
