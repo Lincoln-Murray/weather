@@ -11,17 +11,24 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 </head>
 <class="header" id="header">
-    <span class="centre" style="width: 100%; font-size: 6vh; top: 3vh; text-align: left; color: var(--background_color);">
+    <span class="centre", style="width: 100%; font-size: 5vh; top:2vh; color: var(--background_color);">
+        {% if json['alerts']['alert'] != [] %}
+            {{ json['alerts']['alert']['headline'] }}
+        {% else %}
+            Weather
+        {% endif %}
+    </span>
+    <span class="centre" style="width: 100%; font-size: 6vh; top: 7vh; text-align: left; color: var(--background_color);">
         {{ json['location']['name'] }}
     </span>
-    <span class="centre" style="width: 100%; font-size: 3vh; top: 7vh; text-align: left; color: var(--background_color);">
+    <span class="centre" style="width: 100%; font-size: 3vh; top: 11vh; text-align: left; color: var(--background_color);">
         {{ json['location']['region'] }}({{ json['location']['country'] }})
     </span>     
-    <span class="centre" style="width: 100%; font-size: 5vh; top: 14vh; text-align: left; color: var(--background_color);">
+    <span class="centre" style="width: 100%; font-size: 5vh; top: 18vh; text-align: left; color: var(--background_color);">
         <img style="float: left; margin-top: -6px;" src="{{ json['current']['condition']['icon'] }}" alt="{{ json['current']['condition']['text'] }}">
         {{ json['current']['temp_c'] }} °C
     </span>
-    <span id="feelslike_c" class="centre" style="width: 100%; font-size: 2vh; top: 19vh; left: 0; text-align: left; color: var(--background_color); ">
+    <span id="feelslike_c" class="centre" style="width: 100%; font-size: 2vh; top: 23vh; left: 200px; text-align: left; color: var(--background_color); ">
         Feels Like: {{ json['current']['feelslike_c'] }} °C <br>
         <img id="wind_dir" src="https://static.vecteezy.com/system/resources/previews/016/770/600/non_2x/red-directional-arrow-on-transparent-background-free-png.png" alt="{{ json['current']['wind_dir'] }}" style="top: 1px;" height="16px" width="16px">
         {{ json['current']['wind_kph'] }} KPH 
