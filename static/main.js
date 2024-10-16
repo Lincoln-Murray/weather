@@ -15,8 +15,6 @@ directions = ['N','NNE','NE','ENE','E','ESE','SE','ESE','S','SSW','SW','WSW','W'
 var timer = setInterval(function() {
     if (document.getElementById('header') !== null) {
         resize()
-        console.log(document.getElementById('wind_dir').alt)
-        console.log(document.getElementById('wind_dir').style)
         document.getElementById('wind_dir').style.transform = 'rotate(' + String(directions.indexOf(document.getElementById('wind_dir').alt)*22.5-90) + 'deg)'
         arrows = document.getElementsByClassName('wind_dir')
         for (var i = 0, length = arrows.length; i < length; i++) {
