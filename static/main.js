@@ -7,7 +7,9 @@ addEventListener('resize', (evt)=> {
 });
 
 function resize() {
-    document.getElementById('feelslike_c').style.left = String(window.innerWidth/2-64) + 'px'
+    if (document.getElementById('feelslike_c').style.left != '0px'){
+        document.getElementById('feelslike_c').style.left = String(window.innerWidth/2-64) + 'px'
+    }
 }
 
 directions = ['N','NNE','NE','ENE','E','ESE','SE','ESE','S','SSW','SW','WSW','W','WNW','NW','NNW']

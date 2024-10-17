@@ -29,7 +29,7 @@
         <img style="float: right; margin-top: 3px;" src="{{ json['current']['condition']['icon'] }}" alt="{{ json['current']['condition']['text'] }}">
         {{ json['current']['temp_c'] }} °C
     </span>
-    <span id="feelslike_c" class="centre", style="width: 100%; font-size: 2vh; top: 6vh; text-align: right; right: 64px; color: var(--background_color);">
+    <span id="feelslike_c" class="centre", style="width: 100%; font-size: 2vh; left: 1px; top: 6vh; text-align: right; right: 64px; color: var(--background_color);">
         Feels Like: {{ json['current']['feelslike_c'] }} °C <br>
         <img id="wind_dir" src="https://static.vecteezy.com/system/resources/previews/016/770/600/non_2x/red-directional-arrow-on-transparent-background-free-png.png" alt="{{ json['current']['wind_dir'] }}" style="top: 1px;" height="16px" width="16px">
         {{ json['current']['wind_kph'] }} KPH 
