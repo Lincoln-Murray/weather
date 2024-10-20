@@ -10,7 +10,7 @@
     <script src=" {{url_for('static', filename='main.js')}} "></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 </head>
-<class="header" id="header">
+<header id="header">
     <span class="centre", style="width: 100%; font-size: 5vh; top:2vh; color: var(--background_color);">
         {% if json['alerts']['alert'] != [] %}
             {{ json['alerts']['alert']['headline'] }}
