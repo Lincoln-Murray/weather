@@ -59,8 +59,8 @@
             {% endif %}
         {%endfor%}
     </table>
-    <span class="forecast_details" style="top: 63vh; -ms-transform: translate(-50%, -50%); transform: translate(-50%, -50%); left: 0;">
-        <table>
+    <span class="forecast_details" style="top: 63vh; -ms-transform: translate(-50%, -50%); transform: translate(-50%, -50%); width: 100vw;">
+        <table style="top: 63vh; display: block; overflow-x: auto;">
             <tr> 
                 <td>Hour:</td>
                 {%for hour in json['forecast']['forecastday'][0]['hour']%} 
