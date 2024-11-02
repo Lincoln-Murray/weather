@@ -33,3 +33,10 @@ def positions():
     location_response = request.get_json()
     location = str(location_response['latitude']) + ', ' + str(location_response['longitude'])
     return index()
+
+@app.errorhandler(Exception)
+def page_not_found(error):
+    if 'iphone' in request.headers.get('User-Agent').lower() or 'android' in request.headers.get('User-Agent').lower():
+        return render_template('error_m.html', error_message=error)
+    else:
+        return render_template('error.html', error_message=error)
